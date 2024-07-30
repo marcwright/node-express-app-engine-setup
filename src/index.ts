@@ -7,7 +7,7 @@ import * as middleware from './middleware'
 
 import articlesRouter from './routers/articles.router'
 
-// Very important when deploying on Google App Engine
+// Very important when deploying on Google App Engin
 const PORT = process.env.PORT ?? 8080
 const ENV = process.env.NODE_ENV ?? 'production'
 
