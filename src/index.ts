@@ -22,7 +22,7 @@ app.use(express.json())
 app.use(middleware.httpLogger)
 
 app.get('/', (_req, res) => {
-  res.send('Hello World! This is Node-Express API.')
+  res.send('Hello World! This is Node-Express AP.')
 })
 
 app.get('/ping', (_req, res) => {
