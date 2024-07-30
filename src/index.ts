@@ -3,25 +3,25 @@ import cors from 'cors'
 import helmet from 'helmet'
 import 'dotenv/config'
 
-const bodyParser = require('body-parser');
-const { Sequelize, Model, DataTypes } = require('sequelize');
+// const bodyParser = require('body-parser');
+// const { Sequelize, Model, DataTypes } = require('sequelize');
 
-// Create Sequelize instance
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: './database.sqlite'
-});
+// // Create Sequelize instance
+// const sequelize = new Sequelize({
+//   dialect: 'sqlite',
+//   storage: './database.sqlite'
+// });
 
 // Define User model
-class User extends Model {}
-User.init({
-  name: DataTypes.STRING,
-  email: DataTypes.STRING,
-  password: DataTypes.STRING
-}, { sequelize, modelName: 'user' });
+// class User extends Model {}
+// User.init({
+//   name: DataTypes.STRING,
+//   email: DataTypes.STRING,
+//   password: DataTypes.STRING
+// }, { sequelize, modelName: 'user' });
 
-// Sync models with database
-sequelize.sync();
+// // Sync models with database
+// sequelize.sync();
 
 import * as middleware from './middleware'
 
@@ -38,9 +38,9 @@ app.use(helmet())
 app.use(cors())
 
 // Middleware for parsing request body
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-// app.use(express.json())
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
+app.use(express.json())
 
 app.use(middleware.httpLogger)
 
@@ -53,39 +53,39 @@ app.get('/ping', (_req, res) => {
 })
 
 app.get('/users', async (req, res) => {
-  const users = await User.findAll();
-  res.json(users);
+  // const users = await User.findAll();
+    res.json({message: "users"});
 });
 
-app.get('/users/:id', async (req, res) => {
-  const user = await User.findByPk(req.params.id);
-  res.json(user);
-});
+// app.get('/users/:id', async (req, res) => {
+//   const user = await User.findByPk(req.params.id);
+//   res.json(user);
+// });
 
-app.post('/users', async (req, res) => {
-  const user = await User.create(req.body);
-  res.json(user);
-});
+// app.post('/users', async (req, res) => {
+//   const user = await User.create(req.body);
+//   res.json(user);
+// });
 
-app.put('/users/:id', async (req, res) => {
-  const user = await User.findByPk(req.params.id);
-  if (user) {
-    await user.update(req.body);
-    res.json(user);
-  } else {
-    res.status(404).json({ message: 'User not found' });
-  }
-});
+// app.put('/users/:id', async (req, res) => {
+//   const user = await User.findByPk(req.params.id);
+//   if (user) {
+//     await user.update(req.body);
+//     res.json(user);
+//   } else {
+//     res.status(404).json({ message: 'User not found' });
+//   }
+// });
 
-app.delete('/users/:id', async (req, res) => {
-  const user = await User.findByPk(req.params.id);
-  if (user) {
-    await user.destroy();
-    res.json({ message: 'User deleted' });
-  } else {
-    res.status(404).json({ message: 'User not found' });
-  }
-});
+// app.delete('/users/:id', async (req, res) => {
+//   const user = await User.findByPk(req.params.id);
+//   if (user) {
+//     await user.destroy();
+//     res.json({ message: 'User deleted' });
+//   } else {
+//     res.status(404).json({ message: 'User not found' });
+//   }
+// });
 
 // Articles routes
 
